@@ -1,0 +1,39 @@
+.ember-table {
+  border: 0;
+  border-radius: 0.35rem;
+
+  .table {
+    width: 100%;
+  }
+
+  thead th {
+    border-bottom-width: 3px;
+    background-color: #fff;
+  }
+
+  tbody td,
+  thead th {
+    font-family: inherit;
+    font-size: inherit;
+    text-align: left;
+    padding: 4px 10px;
+    border-right: 0;
+    padding: 0.75rem;
+    border-color: #dee2e6;
+    box-shadow: none;
+  }
+
+  tr:hover {
+    th {
+      cursor: default;
+    }
+
+    td {
+      background: rgba(0, 0, 0, 0.075);
+    }
+  }
+
+  .is-selectable {
+    cursor: pointer;
+  }
+}

@@ -5,6 +5,10 @@
       {{this.sortedCustomers.length}} Results
     </h5>
     <div>
+      <input type="text" class="form-control rounded" placeholder="🔍 Search Keywords"
+      {{on "change" this.searchByKeyword}}/>
+    </div>
+    <div>
       <select class="form-control" {{on "change" this.updateSortProperty}}>
         <option value="lastName" selected={{eq this.sortProperty "lastName"}}>
           Sort by name
@@ -19,6 +23,10 @@
     </div>
   </div>
   <div class="card">
-    <CustomersTable @model={{this.sortedCustomers}} />
+    {{#if this.keyword}}
+      <CustomersTable @model={{this.filteredCustomers}} />
+    {{else}}
+      <CustomersTable @model={{this.sortedCustomers}} />
+    {{/if}}
   </div>
 </Page::Content>

@@ -5,23 +5,30 @@ import { tracked } from '@glimmer/tracking';
 
 export default class CustomersIndexController extends Controller {
   @tracked sortProperty = 'lastName';
+  @tracked keyword = '';
 
   @sort('model', 'customersSortProps')
   sortedCustomers;
 
-  // @filter('model', 'customersFilterProps')
-  // filteredCustomers;
+  @filter('sortedCustomers', (customer) => {
+    const {lastName, project, company} = customer
+    if(lastName == this.keyword || project == this.keyword || company == this.keyword) {
+      return customer
+    }
+  })
+  filteredCustomers;
 
   get customersSortProps() {
-    return [this.sortProperty];
+    return [this.sortProperty]
   }
-
-  // get customersFilterProps (customer, index, array) {
-  //   return customer
-  // }
 
   @action
   updateSortProperty(event) {
     this.sortProperty = event.target.value
+  }
+
+  @action
+  searchByKeyword(event) {
+    this.keyword = event.target.value
   }
 }

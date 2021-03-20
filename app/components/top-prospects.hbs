@@ -1,0 +1,23 @@
+<div class="customers-table table-responsive">
+  <EmberTable
+    ...attributes
+    as |t|
+  >
+    <t.head
+      @columns={{this.columns}}
+      @widthConstraint='eq-container'
+      @resizeMode='standard'
+      @enableReorder={{false}}
+    />
+    <t.body
+      @rowSelectionMode='single'
+      @checkboxSelectionMode='none'
+      @onSelect={{this.onRowClick}}
+      @rows={{this.model}}
+    />
+  </EmberTable>
+
+  {{#if this.isEmpty}}
+    <div class="p-3 text-center">No Results Found</div>
+  {{/if}}
+</div>
